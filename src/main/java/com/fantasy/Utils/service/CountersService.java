@@ -40,29 +40,6 @@ public class CountersService {
         return this.waterCounterRepo.findByCountersDateEntity(lastCountersDate);
     }
 
-//    public Map<String, Object> calculateAndGetCountersData(LightCounter newLightCounter, WaterCounter newWaterCounter){
-//        final CountersDateEntity lastCountersDateEntity = getLastCountersDateEntity();
-//        final LightCounterEntity lightCounterEntity = getLightCounterEntity(lastCountersDateEntity);
-//        final WaterCounterEntity waterCounterEntity = getWaterCounterEntity(lastCountersDateEntity);
-//
-//        final CountersDate countersDate = new CountersDate(lastCountersDateEntity);
-//        final LightCounter lightCounters = new LightCounter(lightCounterEntity);
-//        final WaterCounter waterCounters = new WaterCounter(waterCounterEntity);
-//
-//        return Map.of(
-//            "year", countersDate.getYear(),
-//            "month", countersDate.getMonth(),
-//            "light", Map.of(
-//                "day", newLightCounter.getDay() - lightCounters.getDay(),
-//                "night", newLightCounter.getNight() - lightCounters.getNight()
-//            ),
-//            "water", Map.of(
-//                "cold", newWaterCounter.getCold() - waterCounters.getCold(),
-//                "hot", newWaterCounter.getHot() - waterCounters.getHot()
-//            )
-//        );
-//    }
-
     public CalculateResponse calculateAndGetCountersData(LightCounter newLightCounter, WaterCounter newWaterCounter){
         final CountersDateEntity lastCountersDateEntity = getLastCountersDateEntity();
         final LightCounterEntity lightCounterEntity = getLightCounterEntity(lastCountersDateEntity);
