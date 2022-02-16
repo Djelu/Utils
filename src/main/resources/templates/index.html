@@ -3,32 +3,130 @@
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/css/styles.css}" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <div>
-            <label for="day">Day: </label><input id="day" value="5">
-            <label for="night">Night: </label><input id="night" value="5">
-            <label for="cold">Cold: </label><input id="cold" value="5">
-            <label for="hot">Hot: </label><input id="hot" value="5">
+    <div class="mainBlock">
+        <div class="leftBlock">
+            <div>
+                <input id="waterMonth" class="normalInput monthInput f15px" value=""/>
+                <input id="waterYear" class="smallInput yearInput" value=""/><span>г.</span>
+            </div>
+            <div>
+                <label for="waterFio">Ф.И.О.:</label><input id="waterFio" class="bigInput bold ml5px" value="Ижукова Л.Ф."/>
+            </div>
+            <div>
+                <label for="waterAddress">Адрес:</label><input id="waterAddress" class="veryBigInput bold ml5px" value="п. Пригородный д.59 кв.61"/>
+            </div>
+            <div class="mt7px">
+                <label class="f13px underline">ТЕКУЩИЕ ПОКАЗАНИЯ ВОДОМЕРОВ:</label>
+            </div>
+            <div>
+                <label for="cold">С/У: Х/В:</label><input id="cold" class="smallInput bold ml56px" value="0"/>
+            </div>
+            <div>
+                <label for="hot" class="ml40px">Г/В:</label><input id="hot" class="smallInput bold ml56px" value="0"/>
+            </div>
+            <div>
+                <label for="kCold">Кухня: Х/В:</label><input id="kCold" class="bigInput centerText bold f20px whiteBg calcColdInput" value="—" disabled/>
+            </div>
+            <div>
+                <label for="kHot" class="ml56px">Г/В:</label><input id="kHot"  class="bigInput centerText bold f20px whiteBg calcColdInput" value="—" disabled/>
+            </div>
+            <div>
+                <label class="f13px underline">ИТОГО НА ОПЛАТУ:</label>
+            </div>
+            <div>
+                <label for="calcCold" class="ml40px">Х/В:</label><input id="calcCold" class="smallInput bold ml53px" value="0"/>
+            </div>
+            <div>
+                <label for="calcHot"  class="ml43px">Г/В:</label><input id="calcHot" class="smallInput bold ml53px" value="0"/>
+            </div>
         </div>
-        <div>
-            <label for="calcDay">Day: </label><input id="calcDay" value="0">
-            <label for="calcNight">Night: </label><input id="calcNight" value="0">
-            <label for="calcCold">Cold: </label><input id="calcCold" value="0">
-            <label for="calcHot">Hot: </label><input id="calcHot" value="0">
+        <div class="rightBlock">
+            <div>
+                <input id="lightMonth" class="normalInput monthInput f15px" value=""/>
+                <input id="lightYear" class="smallInput yearInput" value=""/><span>г.</span>
+            </div>
+            <div>
+                <label for="lightFio">Ф.И.О.:</label><input id="lightFio" class="bigInput bold ml5px" value="Ижукова Л.Ф."/>
+            </div>
+            <div>
+                <label for="lightAddress">Адрес:</label><input id="lightAddress" class="veryBigInput bold ml5px" value="п. Пригородный д.59 кв.61"/>
+            </div>
+            <div class="mt7px">
+                <label class="f13px underline">ТЕКУЩИЕ ПОКАЗАНИЯ ЭЛЕКТРОСЧЕТЧИКА:</label>
+            </div>
+            <div class="mt7px">
+                <label for="day" class="ml40px">День:</label><input id="day" class="smallInput bold ml56px" value="0"/>
+            </div>
+            <div class="mt7px">
+                <label for="night" class="ml40px">Ночь:</label><input id="night" class="smallInput bold ml56px" value="0"/>
+            </div>
+            <div>
+                <br/>
+            </div>
+            <div class="mt10px">
+                <label class="f13px underline">ИТОГО НА ОПЛАТУ:</label>
+            </div>
+            <div>
+                <label for="calcDay" class="ml40px">День:</label><input id="calcDay" class="smallInput bold ml56px" value="0"/>
+            </div>
+            <div>
+                <label for="calcNight" class="ml40px">Ночь:</label><input id="calcNight" class="smallInput bold ml56px" value="0"/>
+            </div>
         </div>
     </div>
-    <button onclick="foo()">Высчитать</button>
+    <div>
+        <div>
+            <br/>
+            <br/>
+        </div>
+    </div>
+    <button onclick="calculate()">Высчитать</button>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        function foo() {
+
+        fillCurDate();
+
+        function fillCurDate(){
+            const now = new Date();
+            const curYear = now.getFullYear();
+            const curMonth = getCurMonthStr(now.getMonth());
+
+            $('#waterYear').val(curYear);
+            $('#waterMonth').val(curMonth);
+            $('#lightYear').val(curYear);
+            $('#lightMonth').val(curMonth);
+        }
+        function getCurMonthStr(monthNum){
+            switch (monthNum){
+                case 0: return "Январь";
+                case 1: return "Февраль";
+                case 2: return "Март";
+                case 3: return "Апрель";
+                case 4: return "Май";
+                case 5: return "Июнь";
+                case 6: return "Июль";
+                case 7: return "Август";
+                case 8: return "Сентябрь";
+                case 9: return "Октябрь";
+                case 10: return "Ноябрь";
+                case 11: return "Декабрь";
+                default: return "";
+            }
+        }
+        function calculate() {
             $.post( window.location.href+"counters/calculate", {
                 day: $('#day').val(),
                 night: $('#night').val(),
                 cold: $('#cold').val(),
                 hot: $('#hot').val()
             }).done(function (data) {
+                $('#waterYear').val(data.year);
+                $('#waterMonth').val(data.month);
+                $('#lightYear').val(data.year);
+                $('#lightMonth').val(data.month);
                 $('#calcDay').val(data.day);
                 $('#calcNight').val(data.night);
                 $('#calcCold').val(data.cold);

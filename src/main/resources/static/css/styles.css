@@ -1,0 +1,101 @@
+input {
+    border: 0 solid;
+    /*padding-left: 5px;*/
+    padding-top: 5px;
+    font-family: "Times New Roman", Times, serif;
+}
+label {
+    margin-left: 3px;
+    font-family: "Times New Roman", Times, serif;
+}
+.mainBlock {
+    width: 100%;
+    display: flex;
+}
+.leftBlock {
+    width: 23%;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #000;
+}
+.rightBlock {
+    width: 27%;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #000;
+}
+.mt7px {
+    margin-top: 7px;
+}
+.mt10px {
+    margin-top: 10px;
+}
+.ml5px {
+    margin-left: 5px;
+}
+.ml40px {
+    margin-left: 40px;
+}
+.ml43px {
+    margin-left: 43px;
+}
+.ml53px {
+    margin-left: 53px;
+}
+.ml56px {
+    margin-left: 56px;
+}
+.ml90px {
+    margin-left: 90px;
+}
+.f20px {
+    font-size: 20px;
+}
+.f15px {
+    font-size: 15px;
+}
+.f13px {
+    font-size: 13px;
+}
+.underline {
+    text-decoration: underline;
+}
+.centerText {
+    text-align: center;
+}
+.whiteBg {
+    background: white;
+}
+.blackFnt {
+    color: black;
+}
+.smallInput {
+    width: 27px;
+}
+.normalInput {
+    width: 60px;
+}
+.bigInput {
+    width: 100px;
+}
+.veryBigInput {
+    width: 160px;
+}
+.monthInput {
+    /*background: linear-gradient(#000, #000) center bottom 5px /calc(100% - 10px) 1px no-repeat;*/
+}
+.yearInput {
+
+}
+.coldInput {
+
+}
+.hotInput {
+
+}
+.calcColdInput {
+    height: 10px;
+}
+.bold {
+    font-weight: bold;
+}

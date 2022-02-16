@@ -50,8 +50,12 @@ public class CountersService {
         final WaterCounter waterCounters = new WaterCounter(waterCounterEntity);
 
         return new CalculateResponse(
-                countersDate.getYear(),
-                countersDate.getMonth(),
+                countersDate.getMonth() == 12
+                        ? countersDate.getYear() + 1
+                        : countersDate.getYear(),
+                countersDate.getMonth() != 12
+                        ? countersDate.getMonth() + 1
+                        : 1,
                 newLightCounter.getDay() - lightCounters.getDay(),
                 newLightCounter.getNight() - lightCounters.getNight(),
                 newWaterCounter.getCold() - waterCounters.getCold(),
