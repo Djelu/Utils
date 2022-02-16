@@ -40,6 +40,24 @@ public class CountersService {
         return this.waterCounterRepo.findByCountersDateEntity(lastCountersDate);
     }
 
+    private String getMonthStr(int monthNum){
+        return switch (monthNum) {
+            case 0 -> "Январь";
+            case 1 -> "Февраль";
+            case 2 -> "Март";
+            case 3 -> "Апрель";
+            case 4 -> "Май";
+            case 5 -> "Июнь";
+            case 6 -> "Июль";
+            case 7 -> "Август";
+            case 8 -> "Сентябрь";
+            case 9 -> "Октябрь";
+            case 10 -> "Ноябрь";
+            case 11 -> "Декабрь";
+            default -> "";
+        };
+    }
+
     public CalculateResponse calculateAndGetCountersData(LightCounter newLightCounter, WaterCounter newWaterCounter){
         final CountersDateEntity lastCountersDateEntity = getLastCountersDateEntity();
         final LightCounterEntity lightCounterEntity = getLightCounterEntity(lastCountersDateEntity);
@@ -53,9 +71,11 @@ public class CountersService {
                 countersDate.getMonth() == 12
                         ? countersDate.getYear() + 1
                         : countersDate.getYear(),
-                countersDate.getMonth() != 12
-                        ? countersDate.getMonth() + 1
-                        : 1,
+                getMonthStr(
+                        countersDate.getMonth() != 12
+                                ? countersDate.getMonth() + 1
+                                : 1
+                ),
                 newLightCounter.getDay() - lightCounters.getDay(),
                 newLightCounter.getNight() - lightCounters.getNight(),
                 newWaterCounter.getCold() - waterCounters.getCold(),
