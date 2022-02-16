@@ -8,7 +8,7 @@
 <body>
     <div class="mainBlock">
         <div class="leftBlock">
-            <div>
+            <div class="mt3px">
                 <input id="waterMonth" class="normalInput monthInput f15px" value=""/>
                 <input id="waterYear" class="smallInput yearInput" value=""/><span>г.</span>
             </div>
@@ -22,10 +22,10 @@
                 <label class="f13px underline">ТЕКУЩИЕ ПОКАЗАНИЯ ВОДОМЕРОВ:</label>
             </div>
             <div>
-                <label for="cold">С/У: Х/В:</label><input id="cold" class="smallInput bold ml56px" value="0"/>
+                <label for="cold">С/У: Х/В:</label><input id="cold" class="smallInput bold ml56px" value="1060"/>
             </div>
             <div>
-                <label for="hot" class="ml40px">Г/В:</label><input id="hot" class="smallInput bold ml56px" value="0"/>
+                <label for="hot" class="ml40px">Г/В:</label><input id="hot" class="smallInput bold ml56px" value="94"/>
             </div>
             <div>
                 <label for="kCold">Кухня: Х/В:</label><input id="kCold" class="bigInput centerText bold f20px whiteBg calcColdInput" value="—" disabled/>
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="rightBlock">
-            <div>
+            <div class="mt3px">
                 <input id="lightMonth" class="normalInput monthInput f15px" value=""/>
                 <input id="lightYear" class="smallInput yearInput" value=""/><span>г.</span>
             </div>
@@ -58,10 +58,10 @@
                 <label class="f13px underline">ТЕКУЩИЕ ПОКАЗАНИЯ ЭЛЕКТРОСЧЕТЧИКА:</label>
             </div>
             <div class="mt7px">
-                <label for="day" class="ml40px">День:</label><input id="day" class="smallInput bold ml56px" value="0"/>
+                <label for="day" class="ml40px">День:</label><input id="day" class="bold ml56px w5numsInput" value="37279"/>
             </div>
             <div class="mt7px">
-                <label for="night" class="ml40px">Ночь:</label><input id="night" class="smallInput bold ml56px" value="0"/>
+                <label for="night" class="ml40px">Ночь:</label><input id="night" class="bold ml56px w5numsInput" value="15171"/>
             </div>
             <div>
                 <br/>
@@ -70,10 +70,10 @@
                 <label class="f13px underline">ИТОГО НА ОПЛАТУ:</label>
             </div>
             <div>
-                <label for="calcDay" class="ml40px">День:</label><input id="calcDay" class="smallInput bold ml56px" value="0"/>
+                <label for="calcDay" class="ml40px">День:</label><input id="calcDay" class="bold ml56px w5numsInput" value="0"/>
             </div>
             <div>
-                <label for="calcNight" class="ml40px">Ночь:</label><input id="calcNight" class="smallInput bold ml56px" value="0"/>
+                <label for="calcNight" class="ml40px">Ночь:</label><input id="calcNight" class="bold ml56px w5numsInput" value="0"/>
             </div>
         </div>
     </div>
@@ -83,7 +83,10 @@
             <br/>
         </div>
     </div>
-    <button onclick="calculate()">Высчитать</button>
+    <div>
+        <button id="calcButton" onclick="calculate()" class="visible">Высчитать</button>
+        <button id="printButton" onclick="btnShow('printButton', false); window.print();" class="invisible">Распечатать</button>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
 
@@ -117,7 +120,7 @@
             }
         }
         function calculate() {
-            $.post( window.location.href+"counters/calculate", {
+            $.post(window.location.href+"counters/calculate", {
                 day: $('#day').val(),
                 night: $('#night').val(),
                 cold: $('#cold').val(),
@@ -131,9 +134,21 @@
                 $('#calcNight').val(data.night);
                 $('#calcCold').val(data.cold);
                 $('#calcHot').val(data.hot);
+                btnShow("calcButton", false);
+                btnShow("printButton", true);
             }).fail(function (data) {
                 console.log(data)
             })
+        }
+        function btnShow(btnId, visible){
+            const calcBtn = $('#'+btnId);
+            if(visible){
+                calcBtn.removeClass("invisible");
+                calcBtn.addClass("visible");
+            }else {
+                calcBtn.removeClass("visible");
+                calcBtn.addClass("invisible");
+            }
         }
     </script>
 </body>

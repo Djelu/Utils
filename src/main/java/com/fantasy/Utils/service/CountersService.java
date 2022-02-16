@@ -42,18 +42,18 @@ public class CountersService {
 
     private String getMonthStr(int monthNum){
         return switch (monthNum) {
-            case 0 -> "Январь";
-            case 1 -> "Февраль";
-            case 2 -> "Март";
-            case 3 -> "Апрель";
-            case 4 -> "Май";
-            case 5 -> "Июнь";
-            case 6 -> "Июль";
-            case 7 -> "Август";
-            case 8 -> "Сентябрь";
-            case 9 -> "Октябрь";
-            case 10 -> "Ноябрь";
-            case 11 -> "Декабрь";
+            case 1 -> "Январь";
+            case 2 -> "Февраль";
+            case 3 -> "Март";
+            case 4 -> "Апрель";
+            case 5 -> "Май";
+            case 6 -> "Июнь";
+            case 7 -> "Июль";
+            case 8 -> "Август";
+            case 9 -> "Сентябрь";
+            case 10 -> "Октябрь";
+            case 11 -> "Ноябрь";
+            case 12 -> "Декабрь";
             default -> "";
         };
     }

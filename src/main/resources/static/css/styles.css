@@ -9,20 +9,29 @@ label {
     font-family: "Times New Roman", Times, serif;
 }
 .mainBlock {
-    width: 100%;
+    width: 80%;
     display: flex;
 }
 .leftBlock {
-    width: 23%;
+    width: 46%;
     padding-left: 5px;
     padding-bottom: 5px;
     border: 1px solid #000;
 }
 .rightBlock {
-    width: 27%;
+    width: 54%;
     padding-left: 5px;
     padding-bottom: 5px;
     border: 1px solid #000;
+}
+.visible {
+    display: block;
+}
+.invisible {
+    display: none;
+}
+.mt3px {
+    margin-top: 3px;
 }
 .mt7px {
     margin-top: 7px;
@@ -68,6 +77,9 @@ label {
 }
 .blackFnt {
     color: black;
+}
+.w5numsInput {
+    width: 33px;
 }
 .smallInput {
     width: 27px;
